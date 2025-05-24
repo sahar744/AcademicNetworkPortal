@@ -1,0 +1,219 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Persian Font Support */
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css');
+
+:root {
+  --background: 210 11% 98%; /* #F5F7FA */
+  --foreground: 220 14% 11%; /* #1C1E21 */
+  --muted: 210 11% 95%; /* #EFEFF2 */
+  --muted-foreground: 215 16% 46%; /* #64748B */
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 14% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 14% 11%;
+  --border: 214 13% 90%; /* #E2E8F0 */
+  --input: 214 13% 90%;
+  --primary: 217 91% 55%; /* #1E40AF */
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 220 14% 11%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 220 14% 11%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 217 91% 55%;
+  --radius: 0.5rem;
+  
+  /* Custom colors for Persian academic theme */
+  --success: 142 76% 36%; /* #059669 */
+  --success-foreground: 210 40% 98%;
+  --warning: 45 93% 47%; /* #F59E0B */
+  --warning-foreground: 210 40% 98%;
+  --persian: 259 67% 62%; /* #8B5CF6 */
+  --persian-foreground: 210 40% 98%;
+}
+
+.dark {
+  --background: 220 27% 8%; /* #0F172A */
+  --foreground: 210 40% 98%;
+  --muted: 215 28% 17%; /* #1E293B */
+  --muted-foreground: 215 20% 65%;
+  --popover: 220 27% 8%;
+  --popover-foreground: 210 40% 98%;
+  --card: 220 27% 8%;
+  --card-foreground: 210 40% 98%;
+  --border: 215 28% 17%;
+  --input: 215 28% 17%;
+  --primary: 217 91% 55%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 215 28% 17%;
+  --secondary-foreground: 210 40% 98%;
+  --accent: 215 28% 17%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 63% 31%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 217 91% 55%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Vazir', system-ui, -apple-system, sans-serif;
+    direction: rtl;
+  }
+  
+  /* Latin text should use Inter font */
+  .latin {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  
+  /* RTL Support */
+  [dir="rtl"] {
+    text-align: right;
+  }
+  
+  /* Custom scrollbar for RTL */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+}
+
+@layer components {
+  /* Glass effect for modern UI */
+  .glass-effect {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  /* Card hover effects */
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Notification badge animation */
+  .notification-badge {
+    animation: pulse 2s infinite;
+  }
+  
+  /* Persian number styles */
+  .persian-digits {
+    font-feature-settings: "pnum";
+  }
+  
+  /* Academic color scheme utilities */
+  .bg-success {
+    background-color: hsl(var(--success));
+    color: hsl(var(--success-foreground));
+  }
+  
+  .bg-warning {
+    background-color: hsl(var(--warning));
+    color: hsl(var(--warning-foreground));
+  }
+  
+  .bg-persian {
+    background-color: hsl(var(--persian));
+    color: hsl(var(--persian-foreground));
+  }
+  
+  .text-success {
+    color: hsl(var(--success));
+  }
+  
+  .text-warning {
+    color: hsl(var(--warning));
+  }
+  
+  .text-persian {
+    color: hsl(var(--persian));
+  }
+  
+  .border-success {
+    border-color: hsl(var(--success));
+  }
+  
+  .border-warning {
+    border-color: hsl(var(--warning));
+  }
+  
+  .border-persian {
+    border-color: hsl(var(--persian));
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1; 
+  }
+  50% { 
+    opacity: 0.7; 
+  }
+}
+
+/* Custom focus styles for better accessibility */
+.focus\:ring-primary:focus {
+  --tw-ring-color: hsl(var(--primary));
+}
+
+.focus\:ring-success:focus {
+  --tw-ring-color: hsl(var(--success));
+}
+
+.focus\:ring-persian:focus {
+  --tw-ring-color: hsl(var(--persian));
+}
+
+/* Form validation styles */
+.form-error {
+  @apply text-destructive text-sm mt-1;
+}
+
+.form-success {
+  @apply text-success text-sm mt-1;
+}
+
+/* Loading spinner for Persian context */
+.loading-spinner {
+  @apply animate-spin rounded-full border-2 border-muted border-t-primary;
+}
+
+/* Print styles for academic documents */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+}
